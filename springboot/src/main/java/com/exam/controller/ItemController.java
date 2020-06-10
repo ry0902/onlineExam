@@ -45,9 +45,6 @@ public class ItemController {
 
         // 选择题数据库获取
         List<Integer>  changeNumbers = multiQuestionService.findBySubject(item.getSubject(), changeNumber);
-        for (Integer i : changeNumbers) {
-            System.out.println("i = " + i);
-        }
         if(changeNumbers==null){
             return ApiResultHandler.buildApiResult(400,"选择题数据库获取失败",null);
         }

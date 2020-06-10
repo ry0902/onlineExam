@@ -1,8 +1,11 @@
 package com.exam.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exam.entity.ApiResult;
 import com.exam.entity.Score;
 import com.exam.serviceimpl.ScoreServiceImpl;
+import com.exam.serviceimpl.StudentServiceImpl;
 import com.exam.util.ApiResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +17,10 @@ public class ScoreController {
     @Autowired
     private ScoreServiceImpl scoreService;
 
-    @GetMapping("/scores")
-    public ApiResult findAll() {
-        List<Score> res = scoreService.findAll();
+    @GetMapping("/scores/{page}/{size}")
+    public ApiResult findAll(@PathVariable Integer page, @PathVariable Integer size, @RequestParam String key) {
+        Page<Score> scorePage = new Page<>(page,size);
+        IPage<Score> res = scoreService.findAll(scorePage, key);
         return ApiResultHandler.buildApiResult(200,"查询所有学生成绩",res);
     }
 

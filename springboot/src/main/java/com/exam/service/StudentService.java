@@ -17,5 +17,8 @@ public interface StudentService {
     int update(Student student);
 
     int updatePwd(Student student);
+
     int add(Student student);
+
+    String getNameById(Integer studentId);
 }

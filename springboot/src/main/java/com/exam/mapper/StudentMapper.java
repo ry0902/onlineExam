@@ -18,6 +18,9 @@ public interface StudentMapper {
     @Select("select * from student")
     IPage<Student> findAll(Page page);
 
+    @Select("select studentName from student where studentId = #{studentId}")
+    String getNameById(Integer studentId);
+
     @Select("select * from student where studentId = #{studentId}")
     Student findById(Integer studentId);
 
