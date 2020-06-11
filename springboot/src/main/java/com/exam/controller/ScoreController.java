@@ -26,7 +26,7 @@ public class ScoreController {
         for (int i = 0; i < res.getRecords().size(); i ++) {
             Score score = res.getRecords().get(i);
             Integer id = score.getStudentId();
-            res.getRecords().get(i).setStudentName(studentService.getNameById(id));
+            res.getRecords().get(i).setStudent(studentService.findById(id));
         }
         return ApiResultHandler.buildApiResult(200,"查询所有学生成绩",res);
     }

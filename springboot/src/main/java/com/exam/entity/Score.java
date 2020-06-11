@@ -10,7 +10,7 @@ public class Score {
 
     private Integer studentId;
 
-    private String studentName;
+    private Student student;
 
     private String subject;
 
