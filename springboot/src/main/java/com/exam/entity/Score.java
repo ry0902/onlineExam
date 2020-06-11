@@ -10,6 +10,8 @@ public class Score {
 
     private Integer studentId;
 
+    private String studentName;
+
     private String subject;
 
     private Integer ptScore;

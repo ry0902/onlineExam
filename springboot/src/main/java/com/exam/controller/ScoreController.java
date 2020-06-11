@@ -17,10 +17,17 @@ public class ScoreController {
     @Autowired
     private ScoreServiceImpl scoreService;
 
+    @Autowired StudentServiceImpl studentService;
+
     @GetMapping("/scores/{page}/{size}")
     public ApiResult findAll(@PathVariable Integer page, @PathVariable Integer size, @RequestParam String key) {
         Page<Score> scorePage = new Page<>(page,size);
         IPage<Score> res = scoreService.findAll(scorePage, key);
+        for (int i = 0; i < res.getRecords().size(); i ++) {
+            Score score = res.getRecords().get(i);
+            Integer id = score.getStudentId();
+            res.getRecords().get(i).setStudentName(studentService.getNameById(id));
+        }
         return ApiResultHandler.buildApiResult(200,"查询所有学生成绩",res);
     }
 
