@@ -23,7 +23,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="pagination.current"
-      :page-sizes="[4, 8, 10, 20]"
+      :page-sizes="[6, 12, 18, 24]"
       :page-size="pagination.size"
       layout="total, sizes, prev, pager, next, jumper"
       :total="pagination.total" class="page">
@@ -33,7 +33,7 @@
       title="编辑试卷信息"
       :visible.sync="dialogVisible"
       width="30%"
-      :before-close="handleClose">
+     >
       <section class="update">
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item label="试卷名称">
@@ -86,7 +86,7 @@ export default {
       pagination: { //分页后的考试信息
         current: 1, //当前页
         total: null, //记录条数
-        size: 4 //每页条数
+        size: 6 //每页条数
       },
       dialogVisible: false
     }
@@ -104,10 +104,13 @@ export default {
       })
     },
     handleClose(done) { //关闭提醒
-      this.$confirm('确认关闭？')
-        .then(_ => {
+      // this.$confirm('确认关闭？')
+        this.then(_ => {
           done();
         }).catch(_ => {});
+    },
+    handleOpen(done){
+
     },
     submit() { //提交修改后的试卷信息
       this.dialogVisible = false

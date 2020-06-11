@@ -1,19 +1,49 @@
-// 所有学生
+// 所有学生成绩查询
+
 <template>
   <div class="all">
-    <el-table :data="pagination.records" border>
+    <!-- <el-table :data="pagination.records" border>
       <el-table-column fixed="left" prop="studentName" label="姓名" width="180"></el-table-column>
       <el-table-column prop="institute" label="学院" width="200"></el-table-column>
       <el-table-column prop="major" label="专业" width="200"></el-table-column>
       <el-table-column prop="grade" label="年级" width="200"></el-table-column>
+      <el-table-column prop="subject" label="考试科目" width="200"></el-table-column>
       <el-table-column prop="clazz" label="班级" width="100"></el-table-column>
-      <el-table-column prop="sex" label="性别" width="120"></el-table-column>
-      <el-table-column prop="tel" label="联系方式" width="120"></el-table-column>
       <el-table-column fixed="right" label="查看成绩" width="150">
         <template slot-scope="scope">
           <el-button @click="checkGrade(scope.row.studentId)" type="primary" size="small">查看成绩</el-button>
         </template>
       </el-table-column>
+    </el-table> -->
+     <el-input
+            v-model="search"
+            size="big"
+            placeholder="输入关键字搜索"
+            @input="searchSelect()"
+            />
+     <el-table
+      :data="pagination.records"
+      border
+      style="width: 100%">
+      <el-table-column fixed="left" prop="studentName" label="姓名" width="180"></el-table-column>
+      <el-table-column prop="institute" label="学院" width="200"></el-table-column>
+      <el-table-column prop="major" label="专业" width="200"></el-table-column>
+      <el-table-column prop="grade" label="年级" width="200"></el-table-column>
+      <el-table-column prop="subject" label="考试科目" width="200"></el-table-column>
+      <el-table-column prop="clazz" label="班级" width="100"></el-table-column>
+      <el-table-column prop="studentId" label="学号" width="200"></el-table-column>
+      <el-table-column fixed="right" prop="etScore" label="查看成绩" width="150" >
+        <!-- <template slot-scope="scope">
+          <el-button @click="checkGrade(scope.row.studentId)" type="primary" size="small">查看成绩</el-button>
+        </template> -->
+      </el-table-column>
+      <!-- <el-table-column
+        align="right">
+        <template slot="header" slot-scope="scope">
+         
+        </template>
+       
+      </el-table-column> -->
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
@@ -37,18 +67,43 @@ export default {
         current: 1, //当前页
         total: null, //记录条数
         size: 6 //每页条数
-      }
+      },
+      search:'',
+      tableData:{}
     };
   },
-  created() {
+  mounted() {
     this.getAnswerInfo();
   },
   methods: {
     getAnswerInfo() {
       //分页查询所有试卷信息
-      this.$axios(`/api/students/${this.pagination.current}/${this.pagination.size}`).then(res => {
-        this.pagination = res.data.data;
+      // this.$axios(`/api/scores/${this.pagination.current}/${this.pagination.size}?key=${this.search}`).then(res => {
+      //   this.pagination = res.data.data;
+      //   console.log(res)
+      // }).catch(error => {});
+
+      this.$axios(`api/scores/${this.pagination.current}/${this.pagination.size}?key=${this.search}`).then(res => {
+        this.pagination = res.data.data;     //这里面只能把学生学号、考试科目和成绩给赋值 
+        let stu = {};
+        for(let i = 0; i < this.pagination.total; i++)
+        {
+          // console.log(this.pagination.records[i])
+          this.$axios(`/api/student/${this.pagination.records[i].studentId}`).then(res2 => {
+            // console.log(res2);
+            //这里面我感觉不能直接用上面那样直接
+            stu = res2.data.data;
+            this.pagination.records[i].studentId = stu.studentId;
+            this.pagination.records[i].institute = stu.institute;
+            this.pagination.records[i].major = stu.major;
+            this.pagination.records[i].grade = stu.grade;
+            this.pagination.records[i].clazz = stu.clazz;
+            this.pagination.records[i].studentName = stu.studentName;
+
+          }).catch(error => {});
+        }
       }).catch(error => {});
+      
     },
     //改变当前记录条数
     handleSizeChange(val) {
@@ -62,6 +117,9 @@ export default {
     },
     checkGrade(studentId) {
       this.$router.push({ path: "/grade", query: { studentId: studentId } });
+    },
+    searchSelect(){
+      this.getAnswerInfo();
     }
   }
 };

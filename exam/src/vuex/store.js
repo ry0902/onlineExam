@@ -11,13 +11,13 @@ const state = {
       index: '1',
       title: '考试管理',
       icon: 'icon-kechengbiao',
-      content:[{item1:'功能介绍',path:'/examDescription'},{item2:'考试查询',path:'selectExam'},{item3:'添加考试',path:'/addExam'}],
+      content:[{item2:'考试查询',path:'selectExam'},{item3:'添加考试',path:'/addExam'}],
     },
     {
       index: '2',
       title: '题库管理',
       icon: 'icon-tiku',
-      content:[{item1:'功能介绍',path:'/answerDescription'},{item2:'所有题库',path:'/selectAnswer'},{item3:'增加题库',path:'/addAnswer'},{path: '/addAnswerChildren'}],
+      content:[{item1:'所有题库',path:'/selectAnswer'},{item2:'增加题库',path:'/addAnswer'},{path: '/addAnswerChildren'}],
     },
     {
       index: '3',

@@ -3,7 +3,7 @@
   <div id="left">
     <el-menu
       active-text-color="#dd5862" 
-      text-color="#000" 
+      text-color="#fff" 
       :default-active="this.$route.path"
       class="el-menu-vertical-demo" 
       @open="handleOpen" 
@@ -44,10 +44,16 @@ export default {
   },
   methods: {
     handleOpen(key, keyPath) {
-      // console.log(key, keyPath);
+    //   // console.log(key, keyPath);
+    // },
+    // handleClose(key, keyPath) {
+    //   // console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      // console.log(key, keyPath);
+    //   // console.log(key, keyPath);
+    // },
+    // handleClose(key, keyPath) {
+    //   // console.log(key, keyPath);
     },
     //点击标题传递参数给navigator组件
     handleTitle(index) {

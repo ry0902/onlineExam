@@ -20,6 +20,9 @@
           <el-form-item label="身份证号">
             <el-input v-model="form.cardId"></el-input>
           </el-form-item>
+           <el-form-item label="邮箱">
+            <el-input v-model="form.email"></el-input>
+          </el-form-item>
           <el-form-item label="职称">
             <el-input v-model="form.type"></el-input>
           </el-form-item>

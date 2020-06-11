@@ -28,10 +28,10 @@
     </el-pagination>
     <!-- 编辑对话框-->
     <el-dialog
-      title="编辑试卷信息"
+      title="编辑教师信息"
       :visible.sync="dialogVisible"
       width="30%"
-      :before-close="handleClose">
+     >
       <section class="update">
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item label="姓名">
@@ -46,8 +46,8 @@
           <el-form-item label="电话号码">
             <el-input v-model="form.tel"></el-input>
           </el-form-item>
-          <el-form-item label="密码">
-            <el-input v-model="form.pwd"></el-input>
+          <el-form-item label="邮箱">
+            <el-input v-model="form.email"></el-input>
           </el-form-item>
           <el-form-item label="身份证号">
             <el-input v-model="form.cardId"></el-input>

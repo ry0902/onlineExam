@@ -10,18 +10,18 @@
         本次考试成绩
       </div>
       <div class="show">
-        <div class="img1" :class="{'img1Transform': imgShow}">
+        <!-- <div class="img1" :class="{'img1Transform': imgShow}">
           <img :src="imgSrc.fail1" alt="哭了" v-if="score < 60">
           <img :src="imgSrc.pass1" alt="过了" v-if="score >= 60">
-        </div>
+        </div> -->
         <div class="number" :class="{'border': isTransition}">
           <span>{{score}}</span>
           <span>分数</span>
         </div>
-        <div class="img2" :class="{'img2Transform': imgShow}">
+        <!-- <div class="img2" :class="{'img2Transform': imgShow}">
           <img :src="imgSrc.fail2" alt="哭了" v-if="score < 60">
           <img :src="imgSrc.pass2" alt="过了" v-if="score >= 60">
-        </div>
+        </div> -->
       </div>
       <ul class="time">
         <li class="start"><span>开始时间</span> <span>{{startTime}}</span></li>
