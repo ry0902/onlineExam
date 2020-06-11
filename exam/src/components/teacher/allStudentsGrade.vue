@@ -15,12 +15,17 @@
         </template>
       </el-table-column>
     </el-table> -->
-     <el-input
-            v-model="search"
-            size="big"
-            placeholder="输入关键字搜索"
-            @input="searchSelect()"
-            />
+    <el-form size="">
+      <el-form-item class="searchSub">
+        <el-input
+                v-model="search"
+                size="big"
+                placeholder="输入关键字搜索"
+                class="search-input"
+                />
+          <el-button type="primary" @click="searchSelect()">搜索科目</el-button>
+        </el-form-item>
+    </el-form>
      <el-table
       :data="pagination.records"
       border
@@ -33,17 +38,8 @@
       <el-table-column prop="clazz" label="班级" width="100"></el-table-column>
       <el-table-column prop="studentId" label="学号" width="200"></el-table-column>
       <el-table-column fixed="right" prop="etScore" label="查看成绩" width="150" >
-        <!-- <template slot-scope="scope">
-          <el-button @click="checkGrade(scope.row.studentId)" type="primary" size="small">查看成绩</el-button>
-        </template> -->
-      </el-table-column>
-      <!-- <el-table-column
-        align="right">
-        <template slot="header" slot-scope="scope">
-         
-        </template>
        
-      </el-table-column> -->
+      </el-table-column>
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
@@ -77,30 +73,21 @@ export default {
   },
   methods: {
     getAnswerInfo() {
-      //分页查询所有试卷信息
-      // this.$axios(`/api/scores/${this.pagination.current}/${this.pagination.size}?key=${this.search}`).then(res => {
-      //   this.pagination = res.data.data;
-      //   console.log(res)
-      // }).catch(error => {});
+
 
       this.$axios(`api/scores/${this.pagination.current}/${this.pagination.size}?key=${this.search}`).then(res => {
         this.pagination = res.data.data;     //这里面只能把学生学号、考试科目和成绩给赋值 
         let stu = {};
+        console.log(res)
         for(let i = 0; i < this.pagination.total; i++)
         {
-          // console.log(this.pagination.records[i])
-          this.$axios(`/api/student/${this.pagination.records[i].studentId}`).then(res2 => {
-            // console.log(res2);
-            //这里面我感觉不能直接用上面那样直接
-            stu = res2.data.data;
+          stu = this.pagination.records[i].student;
             this.pagination.records[i].studentId = stu.studentId;
             this.pagination.records[i].institute = stu.institute;
             this.pagination.records[i].major = stu.major;
             this.pagination.records[i].grade = stu.grade;
             this.pagination.records[i].clazz = stu.clazz;
             this.pagination.records[i].studentName = stu.studentName;
-
-          }).catch(error => {});
         }
       }).catch(error => {});
       
@@ -135,6 +122,17 @@ export default {
   }
   .edit {
     margin-left: 20px;
+  }
+
+  .searchSub{
+    width:400px;
+    float: right;
+    margin-bottom: 30px;
+  }
+  .search-input{
+    display: block;
+    width: 200px;
+    float: left;
   }
   .el-table tr {
     background-color: #dd5862 !important;
