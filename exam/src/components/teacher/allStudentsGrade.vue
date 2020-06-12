@@ -1,4 +1,3 @@
-// 所有学生成绩查询
 
 <template>
   <div class="all">
@@ -66,7 +65,7 @@ export default {
         console.log(res)
         for(let i = 0; i < this.pagination.total; i++)
         {
-          stu = this.pagination.records[i].student;
+            stu = this.pagination.records[i].student;
             this.pagination.records[i].studentId = stu.studentId;
             this.pagination.records[i].institute = stu.institute;
             this.pagination.records[i].major = stu.major;

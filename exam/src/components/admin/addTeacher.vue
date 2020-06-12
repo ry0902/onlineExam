@@ -49,7 +49,7 @@ export default {
         pwd: null,
         cardId: null,
         sex: null,
-        role: 2
+        role: 1
       }
     };
   },
