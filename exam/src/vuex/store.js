@@ -11,7 +11,7 @@ const state = {
       index: '1',
       title: '考试管理',
       icon: 'icon-kechengbiao',
-      content:[{item2:'考试查询',path:'selectExam'},{item3:'添加考试',path:'/addExam'}],
+      content:[{item1:'考试查询',path:'selectExam'},{item2:'添加考试',path:'/addExam'}],
     },
     {
       index: '2',
@@ -31,18 +31,6 @@ const state = {
       icon: 'icon-role',
       content:[{item1:'学生管理',path:'/studentManage'},{item2: '添加学生',path: '/addStudent'}],
     },
-    // {
-    //   index: '5',
-    //   title: '教师管理',
-    //   icon: 'icon-Userselect',
-    //   content:[{item1:'教师管理',path:'/teacherManage'},{item2: '添加教师',path: '/addTeacher'}],
-    // },
-    // {
-    //   index: '7',
-    //   title: '模块管理',
-    //   icon: 'icon-module4mokuai',
-    //   content:[{item1:'模块操作',path:'/module'}],
-    // }
   ],
 }
 const mutations = {
