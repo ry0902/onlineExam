@@ -60,6 +60,10 @@ export default {
           icon: 'icon-Userselect',
           content:[{item1:'教师管理',path:'/teacherManage'},{item2: '添加教师',path: '/addTeacher'}],
         })
+      } else {
+        if(this.menu[this.menu.length - 1].index === '5') {
+          this.menu.splice(this.menu.length - 1, 1)
+        }
       }
     }
   },
